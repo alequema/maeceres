@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE ATLANTEAN</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'cinzel': ['Cinzel', 'serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'atlantis': {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1.5s ease-out forwards',
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                        'slide-in-left': 'slideInLeft 1s ease-out forwards',
+                        'slide-in-right': 'slideInRight 1s ease-out forwards',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { filter: 'brightness(1)' },
+                            '100%': { filter: 'brightness(1.3)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: #e5e5e5;
+            overflow-x: hidden;
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 50%;
+            background-color: white;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 50%, rgba(5,5,5,1) 100%);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+        }
+        
+        .card-hover {
+            transition: all 0.5s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-reveal {
+            clip-path: inset(0 100% 0 0);
+            animation: reveal 1.5s ease-out forwards;
+        }
+        
+        @keyframes reveal {
+            to {
+                clip-path: inset(0 0 0 0);
+            }
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .logo-spin {
+            animation: spin 20s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .glitch-text {
+            position: relative;
+        }
+        
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -1px 0 #00fff9;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); }
+            20% { clip: rect(58px, 9999px, 14px, 0); }
+            40% { clip: rect(11px, 9999px, 78px, 0); }
+            60% { clip: rect(82px, 9999px, 35px, 0); }
+            80% { clip: rect(43px, 9999px, 91px, 0); }
+            100% { clip: rect(67px, 9999px, 12px, 0); }
+        }
+        
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 99px, 0); }
+            20% { clip: rect(12px, 9999px, 54px, 0); }
+            40% { clip: rect(88px, 9999px, 22px, 0); }
+            60% { clip: rect(33px, 9999px, 67px, 0); }
+            80% { clip: rect(76px, 9999px, 44px, 0); }
+            100% { clip: rect(21px, 9999px, 83px, 0); }
+        }
+
+        .logo-glow {
+            animation: logoGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            from {
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+                }
+        to {
+        filter: drop-shadow(0 0 30px rgba(255,255,255,0.5));
+        }
+        }
+    </style>
+</head>
+<body class="font-inter custom-scrollbar">
+
+    <!-- Noise Overlay -->
+    <div class="noise"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-40 transition-all duration-500 opacity-0 -translate-y-full">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+        <div class="relative max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#hero" class="font-cinzel text-xl tracking-[0.3em] text-white font-bold hover:text-gray-300 transition-colors">
+                    THE ATLANTEAN
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#story" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Story</a>
+                    <a href="#characters" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Characters</a>
+                    <a href="#world" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">World</a>
+                    <a href="#factions" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Factions</a>
+                    <a href="#concept-art" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Concept Art</a>
+                    <a href="#video" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Video</a>
+                    <a href="#music" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Music</a>
+                </div>
+
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-md border-t border-white/10">
+            <div class="px-6 py-4 space-y-4">
+                <a href="#story" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">Story</a>
+                <a href="#characters" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">Characters</a>
+                <a href="#world" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">World</a>
+                <a href="#factions" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">Factions</a>
+                <a href="#concept-art" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">Concept Art</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+
+    <iframe
+        src="https://player.vimeo.com/video/1182199047?autoplay=1&muted=1&loop=1&background=1"
+        class="absolute inset-0 w-full h-full"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        allowfullscreen>
+    </iframe>
+
+</div>
+</div>
+            <div class="absolute inset-0 bg-black/15"></div>
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+            <div class="mb-8 opacity-0 animate-fade-in" style="animation-delay: 0.5s">
+                <img 
+                src="logo-pequeno.png" 
+                alt="Chaves Cruzadas"
+                class="w-32 h-32 mx-auto mb-6 object-contain opacity-100">
+            </div>
+            
+           <img 
+    src="logo.png" 
+    alt="THE ATLANTEAN"
+    class="mx-auto w-[300px] md:w-[500px] opacity-0 animate-fade-in-up drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+    style="animation-delay: 0.8s">
+            
+
+            <div class="opacity-0 animate-fade-in-up" style="animation-delay: 1.5s">
+                <a href="#story" class="inline-block border border-white/30 px-8 py-3 text-xs tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300">
+                    Enter the World
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section id="story" class="relative py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
+                    <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-6 tracking-wider">THE STORY</h2>
+                    <div class="h-px w-24 bg-white/30 mb-8"></div>
+                    <p class="text-gray-400 leading-relaxed mb-6 text-lg">
+                        In a world where ancient civilizations never fell, Atlantis rises from the depths not as a myth, but as the last bastion of humanity against an encroaching darkness that threatens to erase both past and future.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed mb-8">
+                        The Atlantean follows the journey of the last guardian, awakened from a millennia of slumber to unite fractured realms and prevent the collapse of the timeline itself. Armed with technology beyond comprehension and wisdom older than recorded history, the guardian must navigate political intrigue, ancient curses, and the weight of impossible choices.
+                    </p>
+                    <a href="#" class="inline-flex items-center text-sm tracking-[0.2em] uppercase text-white hover:text-gray-300 transition-colors group">
+                        Learn More 
+                        <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-300 relative">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80" 
+                             alt="Ancient Atlantis" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-48 h-48 border border-white/20"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- Characters Section -->
+    <section id="characters" class="relative py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">CHARACTERS</h2>
+                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">The Guardians of Time</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Character 1 -->
+                <div class="group reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
+                    <div class="relative overflow-hidden mb-6 aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80" 
+                             alt="The Guardian" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-sm text-gray-300">The last of the ancient order, awakened to prevent the temporal collapse.</p>
+                        </div>
+                    </div>
+                    <h3 class="font-cinzel text-xl tracking-wider mb-1">THE GUARDIAN</h3>
+                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Protector of the Timeline</p>
+                </div>
+
+                <!-- Character 2 -->
+                <div class="group reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-200">
+                    <div class="relative overflow-hidden mb-6 aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" 
+                             alt="The Archon" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-sm text-gray-300">Ruler of the underwater city, torn between tradition and survival.</p>
+                        </div>
+                    </div>
+                    <h3 class="font-cinzel text-xl tracking-wider mb-1">THE ARCHON</h3>
+                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Sovereign of Atlantis</p>
+                </div>
+
+                <!-- Character 3 -->
+                <div class="group reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-400">
+                    <div class="relative overflow-hidden mb-6 aspect-[3/4]">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80" 
+                             alt="The Oracle" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-sm text-gray-300">Seer of possible futures, her visions guide the guardian's path.</p>
+                        </div>
+                    </div>
+                    <h3 class="font-cinzel text-xl tracking-wider mb-1">THE ORACLE</h3>
+                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Seer of Destinies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- World Section -->
+    <section id="world" class="relative py-32 px-6 overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80" 
+                 alt="Space Background" 
+                 class="w-full h-full object-cover">
+        </div>
+        
+        <div class="relative max-w-6xl mx-auto">
+            <div class="text-center mb-20 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">THE WORLD</h2>
+                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">Realms Beyond Imagination</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="reveal-on-scroll opacity-0 -translate-x-8 transition-all duration-1000 space-y-8">
+                    <div class="border-l-2 border-white/20 pl-6 hover:border-white/60 transition-colors">
+                        <h3 class="font-cinzel text-2xl mb-2 tracking-wider">ATLANTIS PRIME</h3>
+                        <p class="text-gray-400 leading-relaxed">The crystalline city beneath the waves, where technology and magic intertwine in architecture that defies physics.</p>
+                    </div>
+                    <div class="border-l-2 border-white/20 pl-6 hover:border-white/60 transition-colors">
+                        <h3 class="font-cinzel text-2xl mb-2 tracking-wider">THE VOID</h3>
+                        <p class="text-gray-400 leading-relaxed">The space between moments, where time has no meaning and ancient horrors dwell in eternal silence.</p>
+                    </div>
+                    <div class="border-l-2 border-white/20 pl-6 hover:border-white/60 transition-colors">
+                        <h3 class="font-cinzel text-2xl mb-2 tracking-wider">THE SURFACE</h3>
+                        <p class="text-gray-400 leading-relaxed">A world that has forgotten its past, now facing an apocalypse it cannot comprehend without Atlantean intervention.</p>
+                    </div>
+                </div>
+                <div class="reveal-on-scroll opacity-0 translate-x-8 transition-all duration-1000">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&q=80" 
+                             alt="Atlantis World" 
+                             class="w-full aspect-square object-cover">
+                        <div class="absolute inset-0 border border-white/20 translate-4 -translate-x-4 -translate-y-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- Factions Section -->
+    <section id="factions" class="relative py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">FACTIONS</h2>
+                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">Forces in Conflict</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Faction 1 -->
+                <div class="group relative h-96 overflow-hidden cursor-pointer reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80" 
+                         alt="The Keepers" 
+                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 class="font-cinzel text-xl tracking-wider mb-2">THE KEEPERS</h3>
+                        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                            Guardians of ancient knowledge who believe isolation is the only path to survival.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Faction 2 -->
+                <div class="group relative h-96 overflow-hidden cursor-pointer reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-100">
+                    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&q=80" 
+                         alt="The Harbingers" 
+                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 class="font-cinzel text-xl tracking-wider mb-2">THE HARBINGERS</h3>
+                        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                            Radicals who seek to accelerate the collapse to rebuild from the ashes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Faction 3 -->
+                <div class="group relative h-96 overflow-hidden cursor-pointer reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-200">
+                    <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80" 
+                         alt="The Coalition" 
+                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 class="font-cinzel text-xl tracking-wider mb-2">THE COALITION</h3>
+                        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                            Surface dwellers who have discovered Atlantean artifacts and seek to harness their power.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Faction 4 -->
+                <div class="group relative h-96 overflow-hidden cursor-pointer reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-300">
+                    <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&q=80" 
+                         alt="The Void Born" 
+                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 class="font-cinzel text-xl tracking-wider mb-2">THE VOID BORN</h3>
+                        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                            Entities from beyond time that feed on temporal paradoxes and chaos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- Concept Art Section -->
+    <section id="concept-art" class="relative py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">CONCEPT ART</h2>
+                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">Visions of Another World</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 group overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80" 
+                         alt="Concept 1" 
+                         class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-100 group overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80" 
+                         alt="Concept 2" 
+                         class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-200 group overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&q=80" 
+                         alt="Concept 3" 
+                         class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-300 group overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80" 
+                         alt="Concept 4" 
+                         class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-400 group overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&q=80" 
+                         alt="Concept 5" 
+                         class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-500 group overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600&q=80" 
+                         alt="Concept 6" 
+                         class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- Video Section -->
+    <section id="video" class="relative py-32 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">VIDEO</h2>
+                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">Cinematic Experience</p>
+            </div>
+
+            <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 relative aspect-video bg-black/50 border border-white/10 group cursor-pointer overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1535498730771-e735b998cd64?w=1200&q=80" 
+                     alt="Video Thumbnail" 
+                     class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500">
+                
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-20 h-20 rounded-full border-2 border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 group-hover:border-white">
+                        <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 to-transparent">
+                    <h3 class="font-cinzel text-2xl tracking-wider">OFFICIAL TRAILER</h3>
+                    <p class="text-sm text-gray-400 mt-2">Witness the awakening</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- Poster Art Section -->
+    <section id="poster-art" class="relative py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-20 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">POSTER ART</h2>
+                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">Collectible Visuals</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 group">
+                    <div class="aspect-[2/3] overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80" 
+                             alt="Poster 1" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 border border-white/0 group-hover:border-white/20 transition-all duration-300 m-4"></div>
+                    </div>
+                    <h3 class="font-cinzel text-lg tracking-wider text-center">THE GUARDIAN</h3>
+                </div>
+                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-200 group">
+                    <div class="aspect-[2/3] overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80" 
+                             alt="Poster 2" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 border border-white/0 group-hover:border-white/20 transition-all duration-300 m-4"></div>
+                    </div>
+                    <h3 class="font-cinzel text-lg tracking-wider text-center">RISE OF ATLANTIS</h3>
+                </div>
+                <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-400 group">
+                    <div class="aspect-[2/3] overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&q=80" 
+                             alt="Poster 3" 
+                             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 border border-white/0 group-hover:border-white/20 transition-all duration-300 m-4"></div>
+                    </div>
+                    <h3 class="font-cinzel text-lg tracking-wider text-center">THE VOID CALLS</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- Music Section -->
+    <section id="music" class="relative py-32 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 mb-12">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">MUSIC</h2>
+                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm mb-8">The Soundtrack of Eternity</p>
+                <p class="text-gray-400 leading-relaxed max-w-2xl mx-auto">
+                    An epic orchestral score blending ancient instruments with futuristic synthesizers, capturing the essence of a world where past and future collide.
+                </p>
+            </div>
+
+            <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-200 space-y-4">
+                <!-- Track 1 -->
+                <div class="flex items-center justify-between p-4 border border-white/10 hover:border-white/30 transition-colors group cursor-pointer bg-white/5">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-500 font-cinzel">01</span>
+                        <span class="tracking-wider">Awakening</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-500 text-sm">3:42</span>
+                        <svg class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Track 2 -->
+                <div class="flex items-center justify-between p-4 border border-white/10 hover:border-white/30 transition-colors group cursor-pointer bg-white/5">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-500 font-cinzel">02</span>
+                        <span class="tracking-wider">Depths of Atlantis</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-500 text-sm">4:15</span>
+                        <svg class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Track 3 -->
+                <div class="flex items-center justify-between p-4 border border-white/10 hover:border-white/30 transition-colors group cursor-pointer bg-white/5">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-500 font-cinzel">03</span>
+                        <span class="tracking-wider">Temporal Fracture</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-500 text-sm">5:08</span>
+                        <svg class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Track 4 -->
+                <div class="flex items-center justify-between p-4 border border-white/10 hover:border-white/30 transition-colors group cursor-pointer bg-white/5">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-500 font-cinzel">04</span>
+                        <span class="tracking-wider">The Last Stand</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-500 text-sm">6:33</span>
+                        <svg class="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-400">
+                <a href="#" class="inline-block border border-white/30 px-8 py-3 text-xs tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300">
+                    Listen on Spotify
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- The Brothers / Team Section -->
+    <section id="brothers" class="relative py-32 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">THE BROTHERS</h2>
+                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm mb-12">Creators of the Vision</p>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="group">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-2 border-white/20 group-hover:border-white/50 transition-colors">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80" 
+                                 alt="Creator 1" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-cinzel text-xl tracking-wider mb-2">MARCUS VANE</h3>
+                        <p class="text-sm text-gray-500 tracking-[0.2em] uppercase mb-4">Director & Writer</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Visionary filmmaker with a passion for blending mythological narratives with contemporary themes.
+                        </p>
+                    </div>
+                    
+                    <div class="group">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-2 border-white/20 group-hover:border-white/50 transition-colors">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80" 
+                                 alt="Creator 2" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-cinzel text-xl tracking-wider mb-2">JULIAN VANE</h3>
+                        <p class="text-sm text-gray-500 tracking-[0.2em] uppercase mb-4">Producer & Designer</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Award-winning production designer responsible for the visual identity of the Atlantean universe.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- Updates / Newsletter Section -->
+    <section id="updates" class="relative py-32 px-6">
+        <div class="max-w-2xl mx-auto text-center">
+            <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">UPDATES</h2>
+                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm mb-8">Join the Journey</p>
+                
+                <p class="text-gray-400 mb-8">
+                    Subscribe to receive exclusive updates, behind-the-scenes content, and early access to new releases.
+                </p>
+
+                <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                    <input type="email" 
+                           placeholder="Enter your email" 
+                           class="flex-1 bg-transparent border border-white/20 px-4 py-3 text-sm tracking-wider focus:outline-none focus:border-white/50 transition-colors placeholder-gray-600">
+                    <button type="submit" 
+                            class="border border-white/30 px-6 py-3 text-xs tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative py-12 px-6 border-t border-white/10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="mb-4 md:mb-0">
+                <span class="font-cinzel text-lg tracking-[0.3em] font-bold">THE ATLANTEAN</span>
+            </div>
+            
+            <div class="flex space-x-6 mb-4 md:mb-0">
+                <a href="#" class="text-gray-500 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                </a>
+                <a href="#" class="text-gray-500 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="#" class="text-gray-500 hover:text-white transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                </a>
+            </div>
+            
+            <div class="text-xs text-gray-600 tracking-wider">
+                 2026 THE ATLANTEAN. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll behavior
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.classList.remove('opacity-0', '-translate-y-full');
+                navbar.classList.add('opacity-100', 'translate-y-0');
+            } else {
+                navbar.classList.add('opacity-0', '-translate-y-full');
+                navbar.classList.remove('opacity-100', 'translate-y-0');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('opacity-0', 'translate-y-8', '-translate-x-8', 'translate-x-8', 'scale-95');
+                    entry.target.classList.add('opacity-100', 'translate-y-0', 'translate-x-0', 'scale-100');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for hero image
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImage = document.querySelector('#hero img');
+            if (heroImage && scrolled < window.innerHeight) {
+                heroImage.style.transform = `scale(1.1) translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Glitch effect on hover for title
+        const title = document.querySelector('h1');
+        if (title) {
+            title.addEventListener('mouseenter', () => {
+                title.classList.add('glitch-text');
+                title.setAttribute('data-text', title.textContent);
+            });
+            title.addEventListener('mouseleave', () => {
+                title.classList.remove('glitch-text');
+                title.removeAttribute('data-text');
+            });
+        }
+    </script>
+</body>
+</html>
