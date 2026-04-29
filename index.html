@@ -3,232 +3,334 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THE ATLANTEAN</title>
+    <title>MÃE CERES - FILHOS DA REVOLUÇÃO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'cinzel': ['Cinzel', 'serif'],
-                        'inter': ['Inter', 'sans-serif'],
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    cinzel: ['Cinzel', 'serif'],
+                    inter: ['Inter', 'sans-serif'],
+                },
+                colors: {
+                    atlantis: {
+                        50: '#f0f9ff',
+                        100: '#e0f2fe',
+                        500: '#0ea5e9',
+                        600: '#0284c7',
+                        900: '#0c4a6e',
+                        950: '#082f49',
+                    }
+                },
+                animation: {
+                    'fade-in': 'fadeIn 1.5s ease-out forwards',
+                    'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                    'slide-in-left': 'slideInLeft 1s ease-out forwards',
+                    'slide-in-right': 'slideInRight 1s ease-out forwards',
+                    'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    'float': 'float 6s ease-in-out infinite',
+                    'glow': 'glow 2s ease-in-out infinite alternate',
+                },
+                keyframes: {
+                    fadeIn: {
+                        '0%': { opacity: '0' },
+                        '100%': { opacity: '1' },
                     },
-                    colors: {
-                        'atlantis': {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            900: '#0c4a6e',
-                            950: '#082f49',
-                        }
+                    fadeInUp: {
+                        '0%': { opacity: '0', transform: 'translateY(30px)' },
+                        '100%': { opacity: '1', transform: 'translateY(0)' },
                     },
-                    animation: {
-                        'fade-in': 'fadeIn 1.5s ease-out forwards',
-                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
-                        'slide-in-left': 'slideInLeft 1s ease-out forwards',
-                        'slide-in-right': 'slideInRight 1s ease-out forwards',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    slideInLeft: {
+                        '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                        '100%': { opacity: '1', transform: 'translateX(0)' },
                     },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        slideInLeft: {
-                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' },
-                        },
-                        slideInRight: {
-                            '0%': { opacity: '0', transform: 'translateX(50px)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        glow: {
-                            '0%': { filter: 'brightness(1)' },
-                            '100%': { filter: 'brightness(1.3)' },
-                        }
+                    slideInRight: {
+                        '0%': { opacity: '0', transform: 'translateX(50px)' },
+                        '100%': { opacity: '1', transform: 'translateX(0)' },
+                    },
+                    float: {
+                        '0%, 100%': { transform: 'translateY(0)' },
+                        '50%': { transform: 'translateY(-20px)' },
+                    },
+                    glow: {
+                        '0%': { filter: 'brightness(1)' },
+                        '100%': { filter: 'brightness(1.3)' },
                     }
                 }
             }
         }
+    };
     </script>
-    <style>
-        body {
-            background-color: #050505;
-            color: #e5e5e5;
-            overflow-x: hidden;
-        }
-        
-        .text-glow {
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.1);
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -4px;
-            left: 50%;
-            background-color: white;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 50%, rgba(5,5,5,1) 100%);
-        }
-        
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
-        }
-        
-        .card-hover {
-            transition: all 0.5s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        }
-        
-        .image-reveal {
-            clip-path: inset(0 100% 0 0);
-            animation: reveal 1.5s ease-out forwards;
-        }
-        
-        @keyframes reveal {
-            to {
-                clip-path: inset(0 0 0 0);
-            }
-        }
-        
-        .parallax-bg {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-        .noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 50;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-        
-        .logo-spin {
-            animation: spin 20s linear infinite;
-        }
-        
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .glitch-text {
-            position: relative;
-        }
-        
-        .glitch-text::before,
-        .glitch-text::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .glitch-text::before {
-            left: 2px;
-            text-shadow: -1px 0 #ff00c1;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
-        }
-        
-        .glitch-text::after {
-            left: -2px;
-            text-shadow: -1px 0 #00fff9;
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
-        }
-        
-        @keyframes glitch-anim {
-            0% { clip: rect(31px, 9999px, 94px, 0); }
-            20% { clip: rect(58px, 9999px, 14px, 0); }
-            40% { clip: rect(11px, 9999px, 78px, 0); }
-            60% { clip: rect(82px, 9999px, 35px, 0); }
-            80% { clip: rect(43px, 9999px, 91px, 0); }
-            100% { clip: rect(67px, 9999px, 12px, 0); }
-        }
-        
-        @keyframes glitch-anim2 {
-            0% { clip: rect(65px, 9999px, 99px, 0); }
-            20% { clip: rect(12px, 9999px, 54px, 0); }
-            40% { clip: rect(88px, 9999px, 22px, 0); }
-            60% { clip: rect(33px, 9999px, 67px, 0); }
-            80% { clip: rect(76px, 9999px, 44px, 0); }
-            100% { clip: rect(21px, 9999px, 83px, 0); }
-        }
 
-        .logo-glow {
-            animation: logoGlow 3s ease-in-out infinite alternate;
-        }
+   <style>
+    body {
+        background-color: #050505;
+        color: #e5e5e5;
+        overflow-x: hidden;
+    }
 
-        @keyframes logoGlow {
-            from {
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
-                }
+    .text-glow {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.3),
+                     0 0 40px rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link {
+        position: relative;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: -4px;
+        left: 50%;
+        background-color: white;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    .hero-gradient {
+        background: linear-gradient(
+            to bottom,
+        rgba(0,0,0,0.05) 0%,
+        rgba(0,0,0,0.15) 60%,
+        rgba(5,5,5,0.4) 100%
+        );
+    }
+
+    .section-divider {
+        height: 1px;
+        background: linear-gradient(
+            to right,
+            transparent,
+            rgba(255,255,255,0.2),
+            transparent
+        );
+    }
+
+    .card-hover {
+        transition: all 0.5s ease;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ===== IMAGE REVEAL ===== */
+    .image-reveal {
+        clip-path: inset(0 100% 0 0);
+        animation: reveal 1.5s ease-out forwards;
+    }
+
+    @keyframes reveal {
         to {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    /* ===== CINEMATIC SLIDER ===== */
+    .cinematic-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: scale(1.1);
+        filter: blur(18px) brightness(0.6);
+        transition: opacity 1.5s ease, transform 2.8s ease, filter 2.2s ease;
+        will-change: transform, opacity, filter;
+    }
+
+    .cinematic-slide.active {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px) brightness(1);
+    }
+
+    .cinematic-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            circle at center,
+            rgba(0,0,0,0.1) 0%,
+            rgba(0,0,0,0.6) 55%,
+            rgba(0,0,0,0.95) 100%
+        );
+        z-index: 2;
+    }
+
+    @keyframes slowZoom {
+        0% { transform: scale(1.05); }
+        100% { transform: scale(1.15); }
+    }
+
+    /* ===== NOISE FILM GRAIN ===== */
+    .noise {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.03;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* ===== SCROLLBAR ===== */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #0a0a0a;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    /* ===== LOGO GLOW ===== */
+    .logo-glow {
+        animation: logoGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes logoGlow {
+    from {
+        filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+    }
+    to {
         filter: drop-shadow(0 0 30px rgba(255,255,255,0.5));
-        }
-        }
-    </style>
+    }
+}
+
+    .glitch-text::before,
+    .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .glitch-text::before {
+        left: 2px;
+        text-shadow: -1px 0 #ff00c1;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+
+    .glitch-text::after {
+        left: -2px;
+        text-shadow: -1px 0 #00fff9;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim2 5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim {
+        0% { clip: rect(31px, 9999px, 94px, 0); }
+        20% { clip: rect(58px, 9999px, 14px, 0); }
+        40% { clip: rect(11px, 9999px, 78px, 0); }
+        60% { clip: rect(82px, 9999px, 35px, 0); }
+        80% { clip: rect(43px, 9999px, 91px, 0); }
+        100% { clip: rect(67px, 9999px, 12px, 0); }
+    }
+
+    @keyframes glitch-anim2 {
+        0% { clip: rect(65px, 9999px, 99px, 0); }
+        20% { clip: rect(12px, 9999px, 54px, 0); }
+        40% { clip: rect(88px, 9999px, 22px, 0); }
+        60% { clip: rect(33px, 9999px, 67px, 0); }
+        80% { clip: rect(76px, 9999px, 44px, 0); }
+        100% { clip: rect(21px, 9999px, 83px, 0); }
+    }
+
+    /* ===== BACKGROUND SECTIONS ANIMATED ===== */
+    .section-bg-animated {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .section-bg-animated::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        opacity: 0.35 !important;
+        transform: scale(1.1);
+        transition: transform 8s ease, opacity 1s ease;
+        z-index: 0;
+    }
+
+    .section-bg-animated:hover::before {
+        transform: scale(1.15);
+        opacity: 0.22;
+    }
+
+    .section-bg-animated > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Parallax suave via JS */
+    .parallax-bg {
+        will-change: transform;
+    }
+
+    /* Overlay escuro para legibilidade */
+    .section-bg-animated::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(5,5,5,0.25) 0%,
+        rgba(5,5,5,0.10) 50%,
+        rgba(5,5,5,0.25) 100%
+    );
+    z-index: 0;
+    pointer-events: none;
+}
+
+    /* Glow sutil nos cards sobre background */
+    .card-glow {
+        background: rgba(5, 5, 5, 0.6);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.05);
+        transition: all 0.4s ease;
+    }
+
+    .card-glow:hover {
+        border-color: rgba(255,255,255,0.15);
+        box-shadow: 0 0 40px rgba(255,255,255,0.05);
+    }
+
+    /* Animação de entrada suave do background */
+    @keyframes bgFadeIn {
+        from { opacity: 0; transform: scale(1.2); }
+        to { opacity: 0.15; transform: scale(1.1); }
+    }
+
+    .section-bg-animated.in-view::before {
+        animation: bgFadeIn 1.5s ease-out forwards;
+    }
+</style>
 </head>
 <body class="font-inter custom-scrollbar">
 
@@ -241,17 +343,17 @@
         <div class="relative max-w-7xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <a href="#hero" class="font-cinzel text-xl tracking-[0.3em] text-white font-bold hover:text-gray-300 transition-colors">
-                    THE ATLANTEAN
+                    MÃE CERES - FILHOS DA REVOLUÇÃO
                 </a>
-                
+
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#story" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Story</a>
-                    <a href="#characters" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Characters</a>
-                    <a href="#world" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">World</a>
-                    <a href="#factions" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Factions</a>
+                    <a href="#story" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">História</a>
+                    <a href="#characters" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Personagens</a>
+                    <a href="#world" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Mundo</a>
+                    <a href="#factions" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Países</a>
                     <a href="#concept-art" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Concept Art</a>
-                    <a href="#video" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Video</a>
-                    <a href="#music" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Music</a>
+                    <a href="#video" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Vídeo</a>
+                    <a href="#music" class="nav-link text-xs tracking-[0.2em] uppercase text-gray-300 hover:text-white transition-colors">Músicas</a>
                 </div>
 
                 <button id="mobile-menu-btn" class="md:hidden text-white">
@@ -265,10 +367,10 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-md border-t border-white/10">
             <div class="px-6 py-4 space-y-4">
-                <a href="#story" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">Story</a>
-                <a href="#characters" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">Characters</a>
-                <a href="#world" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">World</a>
-                <a href="#factions" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">Factions</a>
+                <a href="#story" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">História</a>
+                <a href="#characters" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">Personagens</a>
+                <a href="#world" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">Mundo</a>
+                <a href="#factions" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">Países</a>
                 <a href="#concept-art" class="block text-sm tracking-[0.2em] uppercase text-gray-300 hover:text-white">Concept Art</a>
             </div>
         </div>
@@ -277,23 +379,26 @@
     <!-- Hero Section -->
     <section id="hero" class="relative h-screen w-full overflow-hidden flex items-center justify-center">
         <!-- Background Image -->
-        <div class="absolute inset-0">
-            <div class="absolute inset-0 overflow-hidden">
-    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- SLIDES -->
+            <img src="img1.jpg" class="cinematic-slide active" alt="Slide 1">
+            <img src="img2.jpg" class="cinematic-slide" alt="Slide 2">
+            <img src="img3.jpg" class="cinematic-slide" alt="Slide 3">
 
-    <iframe
-        src="https://player.vimeo.com/video/1182199047?autoplay=1&muted=1&loop=1&background=1"
-        class="absolute inset-0 w-full h-full"
-        frameborder="0"
-        allow="autoplay; fullscreen"
-        allowfullscreen>
-    </iframe>
-
-</div>
-</div>
-            <div class="absolute inset-0 bg-black/15"></div>
-            <div class="absolute inset-0 hero-gradient"></div>
+            <!-- overlay cinematic -->
+            <div class="cinematic-overlay"></div>
         </div>
+
+        <iframe
+            src="https://player.vimeo.com/video/1186612733?autoplay=1&muted=1&loop=1&background=1"
+            class="absolute inset-0 w-full h-full z-[1]"
+            frameborder="0"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
+        </iframe>
+
+        <div class="absolute inset-0 bg-black/15 z-[2]"></div>
+        <div class="absolute inset-0 hero-gradient z-[3]"></div>
 
         <!-- Content -->
         <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
@@ -303,23 +408,23 @@
                 alt="Chaves Cruzadas"
                 class="w-32 h-32 mx-auto mb-6 object-contain opacity-100">
             </div>
-            
+
            <img 
     src="logo.png" 
-    alt="THE ATLANTEAN"
+    alt="MÃE CERES - FILHOS DA REVOLUÇÃO"
     class="mx-auto w-[300px] md:w-[500px] opacity-0 animate-fade-in-up drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]"
     style="animation-delay: 0.8s">
-            
+
 
             <div class="opacity-0 animate-fade-in-up" style="animation-delay: 1.5s">
                 <a href="#story" class="inline-block border border-white/30 px-8 py-3 text-xs tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300">
-                    Enter the World
+                    Bem-vindos a Ceres
                 </a>
             </div>
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
             <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
             </svg>
@@ -327,28 +432,47 @@
     </section>
 
     <!-- Story Section -->
-    <section id="story" class="relative py-32 px-6">
+    <section id="story" class="section-bg-animated relative py-32 px-6" style="--bg-image: url('./fundo1.png')">
+        <style>#story::before { background-image: var(--bg-image); }</style>
         <div class="max-w-6xl mx-auto">
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
-                    <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-6 tracking-wider">THE STORY</h2>
+                    <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-6 tracking-wider">A HISTÓRIA</h2>
                     <div class="h-px w-24 bg-white/30 mb-8"></div>
-                    <p class="text-gray-400 leading-relaxed mb-6 text-lg">
-                        In a world where ancient civilizations never fell, Atlantis rises from the depths not as a myth, but as the last bastion of humanity against an encroaching darkness that threatens to erase both past and future.
+                    <p class="text-gray-300 leading-relaxed mb-6 text-lg drop-shadow-lg">
+                        O mundo que está constantemente em guerra; a paz é apenas um acidente.
+                        A paz é uma ilusão doce, mas superficial diante da sobrevivência.
                     </p>
-                    <p class="text-gray-400 leading-relaxed mb-8">
-                        The Atlantean follows the journey of the last guardian, awakened from a millennia of slumber to unite fractured realms and prevent the collapse of the timeline itself. Armed with technology beyond comprehension and wisdom older than recorded history, the guardian must navigate political intrigue, ancient curses, and the weight of impossible choices.
+                    <p class="text-gray-300 leading-relaxed mb-8 drop-shadow-lg">
+    A história se passa em um mundo marcado por guerras constantes, onde surge Ceres, uma cidade-estado isolada e altamente organizada, governada por uma figura quase divina e absoluta: Mãe Ceres. Sob sua ideologia, a liberdade é vista como inimiga, e em troca dela os cidadãos recebem segurança, alimento, educação e propósito. Todos vivem como partes de uma engrenagem — úteis, controlados e totalmente pertencentes à Mãe.
+</p>
+
+<p class="text-gray-300 leading-relaxed mb-8 drop-shadow-lg">
+    A sociedade de Ceres é construída desde a infância para servir: crianças são criadas e educadas em um sistema rígido, onde sentimentos são moldados em disciplina, e a violência é canalizada como ferramenta. Nesse ambiente, acompanhamos jovens como Theo, um líder frio e estratégico; Dark, impulsivo e cruel; Dru, astuta e sensível; e outros estudantes do colégio militar, onde rivalidades, desejos e conflitos internos refletem a dureza do sistema.
+</p>
+
+<p class="text-gray-300 leading-relaxed mb-8 drop-shadow-lg">
+    Enquanto competem, treinam e convivem sob vigilância constante, esses jovens enfrentam não só a pressão de servir à Mãe, mas também suas próprias emoções — ódio, ambição, amor e identidade. A chegada de uma misteriosa garota de olhos azuis abala profundamente Theo, despertando nele algo raro em Ceres: dúvida.
+</p>
+
+<p class="text-gray-300 leading-relaxed mb-8 drop-shadow-lg">
+    Entre jogos violentos, relações intensas e a presença sufocante da ideologia dominante, a narrativa explora até que ponto é possível manter a individualidade em um sistema que elimina a liberdade — e o que acontece quando alguém começa a sentir algo além do que foi programado.
+</p>
+
+<p class="text-gray-300 leading-relaxed mb-8 drop-shadow-lg">
+    Tema central: controle vs. liberdade, humanidade vs. sistema, e o preço da sobrevivência em um mundo onde a paz é apenas um acidente.
+</p>
                     </p>
-                    <a href="#" class="inline-flex items-center text-sm tracking-[0.2em] uppercase text-white hover:text-gray-300 transition-colors group">
-                        Learn More 
-                        <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                    </a>
+<a href="https://www.youtube.com/shorts/uo5tJyGlSUY" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm tracking-[0.2em] uppercase text-white hover:text-gray-300 transition-colors group">
+    Vídeo manifesto Mãe Ceres 
+    <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+    </svg>
+</a>
                 </div>
                 <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-300 relative">
-                    <div class="aspect-[3/4] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80" 
+                    <div class="aspect-[3/4] overflow-hidden card-glow">
+                        <img src="/mae.png" 
                              alt="Ancient Atlantis" 
                              class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
                     </div>
@@ -358,61 +482,139 @@
         </div>
     </section>
 
-    <div class="section-divider max-w-4xl mx-auto"></div>
+    <div class="section-divider max-w-4x2 mx-auto"></div>
 
     <!-- Characters Section -->
-    <section id="characters" class="relative py-32 px-6">
+    <section id="characters" class="section-bg-animated relative py-32 px-6" style="--bg-image: url('./fundo2.jpg')">
+        <style>#characters::before { background-image: var(--bg-image); }</style>
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-20 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
-                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">CHARACTERS</h2>
-                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">The Guardians of Time</p>
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">PERSONAGENS</h2>
+                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">A Mãe e seus filhos</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-4 gap-8">
                 <!-- Character 1 -->
                 <div class="group reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
-                    <div class="relative overflow-hidden mb-6 aspect-[3/4]">
-                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80" 
-                             alt="The Guardian" 
+                    <div class="relative overflow-hidden mb-6 aspect-[3/4] card-glow">
+                        <img src="/001.png" 
+                             alt="O Sistema" 
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                            <p class="text-sm text-gray-300">The last of the ancient order, awakened to prevent the temporal collapse.</p>
+                            <p class="text-sm text-gray-300">Mãe Ceres é uma líder absoluta que oferece proteção e sobrevivência em troca da completa submissão, tratando seus cidadãos como filhos — e também como propriedade.</p>
                         </div>
                     </div>
-                    <h3 class="font-cinzel text-xl tracking-wider mb-1">THE GUARDIAN</h3>
-                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Protector of the Timeline</p>
+                    <h3 class="font-cinzel text-xl tracking-wider mb-1">MÃE CERES</h3>
+                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Alimenta, educa e devora</p>
                 </div>
 
                 <!-- Character 2 -->
                 <div class="group reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-200">
-                    <div class="relative overflow-hidden mb-6 aspect-[3/4]">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" 
-                             alt="The Archon" 
+                    <div class="relative overflow-hidden mb-6 aspect-[3/4] card-glow">
+                        <img src="/002.png" 
+                             alt="O Líder" 
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                            <p class="text-sm text-gray-300">Ruler of the underwater city, torn between tradition and survival.</p>
+                            <p class="text-sm text-gray-300">Theo é um líder disciplinado que reprime seus sentimentos para sobreviver e vencer dentro do sistema de Ceres.</p>
                         </div>
                     </div>
-                    <h3 class="font-cinzel text-xl tracking-wider mb-1">THE ARCHON</h3>
-                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Sovereign of Atlantis</p>
+                    <h3 class="font-cinzel text-xl tracking-wider mb-1">THEO</h3>
+                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Líder frio e calculista</p>
                 </div>
 
                 <!-- Character 3 -->
                 <div class="group reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-400">
-                    <div class="relative overflow-hidden mb-6 aspect-[3/4]">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80" 
-                             alt="The Oracle" 
+                    <div class="relative overflow-hidden mb-6 aspect-[3/4] card-glow">
+                        <img src="/003.png" 
+                             alt="O Caos" 
                              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                         <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                            <p class="text-sm text-gray-300">Seer of possible futures, her visions guide the guardian's path.</p>
+                            <p class="text-sm text-gray-300">Dark é impulsivo e cruel, movido pelo instinto e pelo prazer na violência, sendo o oposto caótico de Theo.</p>
                         </div>
                     </div>
-                    <h3 class="font-cinzel text-xl tracking-wider mb-1">THE ORACLE</h3>
-                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Seer of Destinies</p>
+                    <h3 class="font-cinzel text-xl tracking-wider mb-1">DARK</h3>
+                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Cruel, impulsivo e caótico</p>
                 </div>
+
+                <!-- Character 4 -->
+                <div class="group reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-400">
+                    <div class="relative overflow-hidden mb-6 aspect-[3/4] card-glow">
+                        <img src="/004.png" 
+                             alt="A Ruptura" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-sm text-gray-300">A garota Ceres é uma presença enigmática e dominante, cujo olhar impõe medo e fascínio, desestabilizando até os mais fortes.</p>
+                        </div>
+                    </div>
+                    <h3 class="font-cinzel text-xl tracking-wider mb-1">CERES</h3>
+                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Fria, intensa e inabalável</p>
+                </div>
+
+                <!-- Character 5 -->
+                <div class="group reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-400">
+                    <div class="relative overflow-hidden mb-6 aspect-[3/4] card-glow">
+                        <img src="/005.png" 
+                             alt="TA Inocência" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-sm text-gray-300">Tycho é o irmão mais novo de Theo, simples e humano, que preserva traços de inocência em um mundo moldado pela dureza de Ceres.</p>
+                        </div>
+                    </div>
+                    <h3 class="font-cinzel text-xl tracking-wider mb-1">TYCHO</h3>
+                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Inocente em mundo cruel</p>
+                </div>
+
+                <!-- Character 6 -->
+                <div class="group reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-400">
+                    <div class="relative overflow-hidden mb-6 aspect-[3/4] card-glow">
+                        <img src="/006.png" 
+                             alt="O Observador" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-sm text-gray-300">Daime é um observador sarcástico e resiliente que, mesmo limitado fisicamente, enxerga o sistema com lucidez e desprezo.</p>
+                        </div>
+                    </div>
+                    <h3 class="font-cinzel text-xl tracking-wider mb-1">DAIME</h3>
+                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Deboche como defesa constante</p>
+                </div>
+
+                <!-- Character 7 -->
+                <div class="group reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-400">
+                    <div class="relative overflow-hidden mb-6 aspect-[3/4] card-glow">
+                        <img src="/007.png" 
+                             alt="O Desejo" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-sm text-gray-300">Ana é intensa e estratégica, usando seu próprio corpo e emoções como moeda para sobreviver e manter poder em Ceres.</p>
+                        </div>
+                    </div>
+                    <h3 class="font-cinzel text-xl tracking-wider mb-1">ANA</h3>
+                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Estratégica, intensa e manipuladora</p>
+                </div>
+
+                <!-- Character 8 -->
+                <div class="group reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-400">
+                    <div class="relative overflow-hidden mb-6 aspect-[3/4] card-glow">
+                        <img src="/008.png" 
+                             alt="Humanidade" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                            <p class="text-sm text-gray-300">Dru é astuta e sensível, equilibrando sua habilidade de negociar e sobreviver com um lado emocional profundo que ainda resiste ao sistema.</p>
+                        </div>
+                    </div>
+                    <h3 class="font-cinzel text-xl tracking-wider mb-1">DRU</h3>
+                    <p class="text-xs text-gray-500 tracking-[0.2em] uppercase">Astuta, sensível e resiliente</p>
+                </div>
+
+                
             </div>
         </div>
     </section>
@@ -420,36 +622,31 @@
     <div class="section-divider max-w-4xl mx-auto"></div>
 
     <!-- World Section -->
-    <section id="world" class="relative py-32 px-6 overflow-hidden">
-        <div class="absolute inset-0 opacity-20">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80" 
-                 alt="Space Background" 
-                 class="w-full h-full object-cover">
-        </div>
-        
+    <section id="world" class="section-bg-animated relative py-32 px-6 overflow-hidden" style="--bg-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80');">
+        <style>#world::before { background-image: var(--bg-image); }</style>
         <div class="relative max-w-6xl mx-auto">
             <div class="text-center mb-20 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
-                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">THE WORLD</h2>
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">O MUNDO</h2>
                 <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">Realms Beyond Imagination</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="reveal-on-scroll opacity-0 -translate-x-8 transition-all duration-1000 space-y-8">
-                    <div class="border-l-2 border-white/20 pl-6 hover:border-white/60 transition-colors">
+                    <div class="border-l-2 border-white/20 pl-6 hover:border-white/60 transition-colors card-glow p-4">
                         <h3 class="font-cinzel text-2xl mb-2 tracking-wider">ATLANTIS PRIME</h3>
-                        <p class="text-gray-400 leading-relaxed">The crystalline city beneath the waves, where technology and magic intertwine in architecture that defies physics.</p>
+                        <p class="text-gray-300 leading-relaxed">The crystalline city beneath the waves, where technology and magic intertwine in architecture that defies physics.</p>
                     </div>
-                    <div class="border-l-2 border-white/20 pl-6 hover:border-white/60 transition-colors">
+                    <div class="border-l-2 border-white/20 pl-6 hover:border-white/60 transition-colors card-glow p-4">
                         <h3 class="font-cinzel text-2xl mb-2 tracking-wider">THE VOID</h3>
-                        <p class="text-gray-400 leading-relaxed">The space between moments, where time has no meaning and ancient horrors dwell in eternal silence.</p>
+                        <p class="text-gray-300 leading-relaxed">The space between moments, where time has no meaning and ancient horrors dwell in eternal silence.</p>
                     </div>
-                    <div class="border-l-2 border-white/20 pl-6 hover:border-white/60 transition-colors">
+                    <div class="border-l-2 border-white/20 pl-6 hover:border-white/60 transition-colors card-glow p-4">
                         <h3 class="font-cinzel text-2xl mb-2 tracking-wider">THE SURFACE</h3>
-                        <p class="text-gray-400 leading-relaxed">A world that has forgotten its past, now facing an apocalypse it cannot comprehend without Atlantean intervention.</p>
+                        <p class="text-gray-300 leading-relaxed">A world that has forgotten its past, now facing an apocalypse it cannot comprehend without Atlantean intervention.</p>
                     </div>
                 </div>
                 <div class="reveal-on-scroll opacity-0 translate-x-8 transition-all duration-1000">
-                    <div class="relative">
+                    <div class="relative card-glow">
                         <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&q=80" 
                              alt="Atlantis World" 
                              class="w-full aspect-square object-cover">
@@ -463,16 +660,17 @@
     <div class="section-divider max-w-4xl mx-auto"></div>
 
     <!-- Factions Section -->
-    <section id="factions" class="relative py-32 px-6">
+    <section id="factions" class="section-bg-animated relative py-32 px-6" style="--bg-image: url('./fundo5.png')">
+        <style>#factions::before { background-image: var(--bg-image); }</style>
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-20 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
-                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">FACTIONS</h2>
-                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">Forces in Conflict</p>
+                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">PAÍSES</h2>
+                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">Conflito</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Faction 1 -->
-                <div class="group relative h-96 overflow-hidden cursor-pointer reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
+                <div class="group relative h-96 overflow-hidden cursor-pointer reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 card-glow">
                     <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80" 
                          alt="The Keepers" 
                          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
@@ -486,7 +684,7 @@
                 </div>
 
                 <!-- Faction 2 -->
-                <div class="group relative h-96 overflow-hidden cursor-pointer reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-100">
+                <div class="group relative h-96 overflow-hidden cursor-pointer reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-100 card-glow">
                     <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&q=80" 
                          alt="The Harbingers" 
                          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
@@ -500,7 +698,7 @@
                 </div>
 
                 <!-- Faction 3 -->
-                <div class="group relative h-96 overflow-hidden cursor-pointer reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-200">
+                <div class="group relative h-96 overflow-hidden cursor-pointer reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-200 card-glow">
                     <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80" 
                          alt="The Coalition" 
                          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
@@ -514,7 +712,7 @@
                 </div>
 
                 <!-- Faction 4 -->
-                <div class="group relative h-96 overflow-hidden cursor-pointer reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-300">
+                <div class="group relative h-96 overflow-hidden cursor-pointer reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-300 card-glow">
                     <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&q=80" 
                          alt="The Void Born" 
                          class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
@@ -533,7 +731,8 @@
     <div class="section-divider max-w-4xl mx-auto"></div>
 
     <!-- Concept Art Section -->
-    <section id="concept-art" class="relative py-32 px-6">
+    <section id="concept-art" class="section-bg-animated relative py-32 px-6" style="--bg-image: url('./fundo4.png')">
+        <style>#concept-art::before { background-image: var(--bg-image); }</style>
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-20 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
                 <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">CONCEPT ART</h2>
@@ -541,32 +740,32 @@
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 group overflow-hidden">
+                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 group overflow-hidden card-glow">
                     <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80" 
                          alt="Concept 1" 
                          class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
-                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-100 group overflow-hidden">
+                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-100 group overflow-hidden card-glow">
                     <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80" 
                          alt="Concept 2" 
                          class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
-                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-200 group overflow-hidden">
+                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-200 group overflow-hidden card-glow">
                     <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&q=80" 
                          alt="Concept 3" 
                          class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
-                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-300 group overflow-hidden">
+                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-300 group overflow-hidden card-glow">
                     <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=600&q=80" 
                          alt="Concept 4" 
                          class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
-                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-400 group overflow-hidden">
+                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-400 group overflow-hidden card-glow">
                     <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=600&q=80" 
                          alt="Concept 5" 
                          class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
-                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-500 group overflow-hidden">
+                <div class="reveal-on-scroll opacity-0 scale-95 transition-all duration-1000 delay-500 group overflow-hidden card-glow">
                     <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600&q=80" 
                          alt="Concept 6" 
                          class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
@@ -577,39 +776,82 @@
 
     <div class="section-divider max-w-4xl mx-auto"></div>
 
-    <!-- Video Section -->
-    <section id="video" class="relative py-32 px-6">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-16 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
-                <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">VIDEO</h2>
-                <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">Cinematic Experience</p>
-            </div>
+<!-- Video Section -->
+<section id="video" class="section-bg-animated relative py-32 px-6"
+    style="--bg-image: url('/fundo6.png');">
 
-            <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 relative aspect-video bg-black/50 border border-white/10 group cursor-pointer overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1535498730771-e735b998cd64?w=1200&q=80" 
-                     alt="Video Thumbnail" 
-                     class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500">
-                
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-20 h-20 rounded-full border-2 border-white/50 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 group-hover:border-white">
-                        <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z"/>
-                        </svg>
-                    </div>
-                </div>
-                
-                <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 to-transparent">
-                    <h3 class="font-cinzel text-2xl tracking-wider">OFFICIAL TRAILER</h3>
-                    <p class="text-sm text-gray-400 mt-2">Witness the awakening</p>
-                </div>
-            </div>
+    <style>
+        #video::before { background-image: var(--bg-image); }
+    </style>
+
+    <div class="max-w-5xl mx-auto">
+
+        <!-- Título -->
+        <div class="text-center mb-16">
+            <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">VÍDEO</h2>
+            <p class="text-gray-400 tracking-[0.2em] uppercase text-sm">Mergulhe nesta Experiência</p>
         </div>
-    </section>
 
-    <div class="section-divider max-w-4xl mx-auto"></div>
+        <!-- Player -->
+        <div id="video-player"
+            class="relative aspect-video bg-black/50 border border-white/10 overflow-hidden cursor-pointer">
+
+            <!-- Thumbnail -->
+            <img
+                src="https://vumbnail.com/1182199047.jpg"
+                class="thumb w-full h-full object-cover opacity-70"
+            >
+
+            <!-- Play -->
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="play-btn w-20 h-20 rounded-full border-2 border-white/60 flex items-center justify-center text-white text-2xl">
+                    ▶
+                </div>
+            </div>
+
+            <!-- Vimeo -->
+            <iframe
+                src="https://player.vimeo.com/video/1182199047?title=0&byline=0&portrait=0"
+                class="iframe absolute inset-0 w-full h-full hidden"
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+
+            <!-- Texto -->
+            <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 to-transparent">
+                <h3 class="font-cinzel text-2xl tracking-wider">OFFICIAL TRAILER</h3>
+                <p class="text-sm text-gray-400 mt-2">Witness the awakening</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<!-- Script (já no lugar certo) -->
+<script>
+document.getElementById("video-player").addEventListener("click", function () {
+    const iframe = this.querySelector(".iframe");
+    const thumb = this.querySelector(".thumb");
+    const btn = this.querySelector(".play-btn");
+
+    thumb.style.display = "none";
+    btn.style.display = "none";
+
+    iframe.classList.remove("hidden");
+    iframe.src += "&autoplay=1";
+});
+</script>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
+
+<div class="section-divider max-w-4xl mx-auto"></div>
 
     <!-- Poster Art Section -->
-    <section id="poster-art" class="relative py-32 px-6">
+    <section id="poster-art" class="section-bg-animated relative py-32 px-6" style="--bg-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&q=80');">
+        <style>#poster-art::before { background-image: var(--bg-image); }</style>
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-20 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
                 <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">POSTER ART</h2>
@@ -618,7 +860,7 @@
 
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 group">
-                    <div class="aspect-[2/3] overflow-hidden mb-4 relative">
+                    <div class="aspect-[2/3] overflow-hidden mb-4 relative card-glow">
                         <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80" 
                              alt="Poster 1" 
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
@@ -627,7 +869,7 @@
                     <h3 class="font-cinzel text-lg tracking-wider text-center">THE GUARDIAN</h3>
                 </div>
                 <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-200 group">
-                    <div class="aspect-[2/3] overflow-hidden mb-4 relative">
+                    <div class="aspect-[2/3] overflow-hidden mb-4 relative card-glow">
                         <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80" 
                              alt="Poster 2" 
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
@@ -636,7 +878,7 @@
                     <h3 class="font-cinzel text-lg tracking-wider text-center">RISE OF ATLANTIS</h3>
                 </div>
                 <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-400 group">
-                    <div class="aspect-[2/3] overflow-hidden mb-4 relative">
+                    <div class="aspect-[2/3] overflow-hidden mb-4 relative card-glow">
                         <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&q=80" 
                              alt="Poster 3" 
                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
@@ -651,19 +893,20 @@
     <div class="section-divider max-w-4xl mx-auto"></div>
 
     <!-- Music Section -->
-    <section id="music" class="relative py-32 px-6">
+    <section id="music" class="section-bg-animated relative py-32 px-6" style="--bg-image: url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1920&q=80');">
+        <style>#music::before { background-image: var(--bg-image); }</style>
         <div class="max-w-4xl mx-auto text-center">
             <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 mb-12">
                 <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">MUSIC</h2>
                 <p class="text-gray-400 tracking-[0.2em] uppercase text-sm mb-8">The Soundtrack of Eternity</p>
-                <p class="text-gray-400 leading-relaxed max-w-2xl mx-auto">
+                <p class="text-gray-300 leading-relaxed max-w-2xl mx-auto drop-shadow-lg">
                     An epic orchestral score blending ancient instruments with futuristic synthesizers, capturing the essence of a world where past and future collide.
                 </p>
             </div>
 
             <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000 delay-200 space-y-4">
                 <!-- Track 1 -->
-                <div class="flex items-center justify-between p-4 border border-white/10 hover:border-white/30 transition-colors group cursor-pointer bg-white/5">
+                <div class="flex items-center justify-between p-4 border border-white/10 hover:border-white/30 transition-colors group cursor-pointer bg-black/40 backdrop-blur-sm">
                     <div class="flex items-center space-x-4">
                         <span class="text-gray-500 font-cinzel">01</span>
                         <span class="tracking-wider">Awakening</span>
@@ -677,7 +920,7 @@
                 </div>
 
                 <!-- Track 2 -->
-                <div class="flex items-center justify-between p-4 border border-white/10 hover:border-white/30 transition-colors group cursor-pointer bg-white/5">
+                <div class="flex items-center justify-between p-4 border border-white/10 hover:border-white/30 transition-colors group cursor-pointer bg-black/40 backdrop-blur-sm">
                     <div class="flex items-center space-x-4">
                         <span class="text-gray-500 font-cinzel">02</span>
                         <span class="tracking-wider">Depths of Atlantis</span>
@@ -691,7 +934,7 @@
                 </div>
 
                 <!-- Track 3 -->
-                <div class="flex items-center justify-between p-4 border border-white/10 hover:border-white/30 transition-colors group cursor-pointer bg-white/5">
+                <div class="flex items-center justify-between p-4 border border-white/10 hover:border-white/30 transition-colors group cursor-pointer bg-black/40 backdrop-blur-sm">
                     <div class="flex items-center space-x-4">
                         <span class="text-gray-500 font-cinzel">03</span>
                         <span class="tracking-wider">Temporal Fracture</span>
@@ -705,7 +948,7 @@
                 </div>
 
                 <!-- Track 4 -->
-                <div class="flex items-center justify-between p-4 border border-white/10 hover:border-white/30 transition-colors group cursor-pointer bg-white/5">
+                <div class="flex items-center justify-between p-4 border border-white/10 hover:border-white/30 transition-colors group cursor-pointer bg-black/40 backdrop-blur-sm">
                     <div class="flex items-center space-x-4">
                         <span class="text-gray-500 font-cinzel">04</span>
                         <span class="tracking-wider">The Last Stand</span>
@@ -730,14 +973,15 @@
     <div class="section-divider max-w-4xl mx-auto"></div>
 
     <!-- The Brothers / Team Section -->
-    <section id="brothers" class="relative py-32 px-6">
+    <section id="brothers" class="section-bg-animated relative py-32 px-6" style="--bg-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=1920&q=80');">
+        <style>#brothers::before { background-image: var(--bg-image); }</style>
         <div class="max-w-4xl mx-auto text-center">
             <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
                 <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">THE BROTHERS</h2>
                 <p class="text-gray-400 tracking-[0.2em] uppercase text-sm mb-12">Creators of the Vision</p>
-                
+
                 <div class="grid md:grid-cols-2 gap-12">
-                    <div class="group">
+                    <div class="group card-glow p-6">
                         <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-2 border-white/20 group-hover:border-white/50 transition-colors">
                             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80" 
                                  alt="Creator 1" 
@@ -745,12 +989,12 @@
                         </div>
                         <h3 class="font-cinzel text-xl tracking-wider mb-2">MARCUS VANE</h3>
                         <p class="text-sm text-gray-500 tracking-[0.2em] uppercase mb-4">Director & Writer</p>
-                        <p class="text-gray-400 text-sm leading-relaxed">
+                        <p class="text-gray-300 text-sm leading-relaxed drop-shadow-lg">
                             Visionary filmmaker with a passion for blending mythological narratives with contemporary themes.
                         </p>
                     </div>
-                    
-                    <div class="group">
+
+                    <div class="group card-glow p-6">
                         <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-2 border-white/20 group-hover:border-white/50 transition-colors">
                             <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&q=80" 
                                  alt="Creator 2" 
@@ -758,7 +1002,7 @@
                         </div>
                         <h3 class="font-cinzel text-xl tracking-wider mb-2">JULIAN VANE</h3>
                         <p class="text-sm text-gray-500 tracking-[0.2em] uppercase mb-4">Producer & Designer</p>
-                        <p class="text-gray-400 text-sm leading-relaxed">
+                        <p class="text-gray-300 text-sm leading-relaxed drop-shadow-lg">
                             Award-winning production designer responsible for the visual identity of the Atlantean universe.
                         </p>
                     </div>
@@ -770,20 +1014,21 @@
     <div class="section-divider max-w-4xl mx-auto"></div>
 
     <!-- Updates / Newsletter Section -->
-    <section id="updates" class="relative py-32 px-6">
+    <section id="updates" class="section-bg-animated relative py-32 px-6" style="--bg-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80');">
+        <style>#updates::before { background-image: var(--bg-image); }</style>
         <div class="max-w-2xl mx-auto text-center">
             <div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-1000">
                 <h2 class="font-cinzel text-4xl md:text-5xl font-bold mb-4 tracking-wider">UPDATES</h2>
                 <p class="text-gray-400 tracking-[0.2em] uppercase text-sm mb-8">Join the Journey</p>
-                
-                <p class="text-gray-400 mb-8">
+
+                <p class="text-gray-300 mb-8 drop-shadow-lg">
                     Subscribe to receive exclusive updates, behind-the-scenes content, and early access to new releases.
                 </p>
 
                 <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
                     <input type="email" 
                            placeholder="Enter your email" 
-                           class="flex-1 bg-transparent border border-white/20 px-4 py-3 text-sm tracking-wider focus:outline-none focus:border-white/50 transition-colors placeholder-gray-600">
+                           class="flex-1 bg-black/40 backdrop-blur-sm border border-white/20 px-4 py-3 text-sm tracking-wider focus:outline-none focus:border-white/50 transition-colors placeholder-gray-600">
                     <button type="submit" 
                             class="border border-white/30 px-6 py-3 text-xs tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300">
                         Subscribe
@@ -794,12 +1039,12 @@
     </section>
 
     <!-- Footer -->
-    <footer class="relative py-12 px-6 border-t border-white/10">
+    <footer class="relative py-12 px-6 border-t border-white/10 bg-black/80">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
             <div class="mb-4 md:mb-0">
-                <span class="font-cinzel text-lg tracking-[0.3em] font-bold">THE ATLANTEAN</span>
+                <span class="font-cinzel text-lg tracking-[0.3em] font-bold">MÃE CERES - FILHOS DA REVOLUÇÃO</span>
             </div>
-            
+
             <div class="flex space-x-6 mb-4 md:mb-0">
                 <a href="#" class="text-gray-500 hover:text-white transition-colors">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
@@ -811,21 +1056,33 @@
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
                 </a>
             </div>
-            
+
             <div class="text-xs text-gray-600 tracking-wider">
-                 2026 THE ATLANTEAN. ALL RIGHTS RESERVED.
+                 2026 MÃE CERES - FILHOS DA REVOLUÇÃO. TODOS DIREITOS RESERVADOS.
             </div>
         </div>
     </footer>
 
     <script>
+        // ===== CINEMATIC SLIDER =====
+        const slides = document.querySelectorAll('.cinematic-slide');
+        let current = 0;
+
+        function nextSlide() {
+            if (!slides.length) return;
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }
+        setInterval(nextSlide, 5000);
+
         // Navbar scroll behavior
         const navbar = document.getElementById('navbar');
         let lastScroll = 0;
 
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
-            
+
             if (currentScroll > 100) {
                 navbar.classList.remove('opacity-0', '-translate-y-full');
                 navbar.classList.add('opacity-100', 'translate-y-0');
@@ -833,7 +1090,7 @@
                 navbar.classList.add('opacity-0', '-translate-y-full');
                 navbar.classList.remove('opacity-100', 'translate-y-0');
             }
-            
+
             lastScroll = currentScroll;
         });
 
@@ -871,6 +1128,25 @@
 
         document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
             observer.observe(el);
+        });
+
+        // Intersection Observer para backgrounds animados
+        const bgObserverOptions = {
+            root: null,
+            rootMargin: '-10% 0px',
+            threshold: 0.1
+        };
+
+        const bgObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, bgObserverOptions);
+
+        document.querySelectorAll('.section-bg-animated').forEach((el) => {
+            bgObserver.observe(el);
         });
 
         // Smooth scroll for anchor links
